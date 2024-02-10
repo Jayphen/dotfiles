@@ -18,3 +18,5 @@ alias cat bat
 alias grep rg
 alias mkdir 'mkdir -p'
 alias cz chezmoi
+
+zoxide init fish | source
