@@ -11,6 +11,7 @@ fish_add_path ~/.cargo/bin
 fish_add_path $VOLTA_HOME/bin
 fish_add_path $GOPATH/bin
 fish_add_path $GOROOT/bin
+fish_add_path /opt/homebrew/bin
 
 # Aliases
 alias cat bat
