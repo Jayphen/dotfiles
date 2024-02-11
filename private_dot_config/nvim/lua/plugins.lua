@@ -250,6 +250,26 @@ local plugins = {
 			{ "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
 		},
 	},
+
+	{
+		"danielfalk/smart-open.nvim",
+		branch = "0.2.x",
+		config = function()
+			require("telescope").load_extension("smart_open")
+		end,
+		dependencies = {
+			"kkharji/sqlite.lua",
+			-- Only required if using match_algorithm fzf
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+		keys = {
+			{
+				"<leader><leader>",
+				"<cmd>lua require('telescope').extensions.smart_open.smart_open()<cr>",
+				desc = "Smart open",
+			},
+		},
+	},
 }
 
 require("lazy").setup(plugins, require("plugin-conf.lazy"))
