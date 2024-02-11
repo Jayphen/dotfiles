@@ -73,6 +73,16 @@ local plugins = {
 				end,
 			},
 		},
+		config = function()
+			require("telescope").setup({
+				extensions = {
+					smart_open = {
+						match_algorithm = "fzy",
+						open_buffer_indicators = { previous = "👀", others = "🙈" },
+					},
+				},
+			})
+		end,
 	},
 
 	{
@@ -259,8 +269,7 @@ local plugins = {
 		end,
 		dependencies = {
 			"kkharji/sqlite.lua",
-			-- Only required if using match_algorithm fzf
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			{ "nvim-telescope/telescope-fzy-native.nvim" },
 		},
 		keys = {
 			{
