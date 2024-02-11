@@ -1,0 +1,24 @@
+[core]
+	pager = delta
+	editor = nvim
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[user]
+	email = software@jayphen.com
+
+[diff]
+	tool = nvimdiff
+
+[merge]
+	tool = nvimdiff
+
+[push]
+	autoSetupRemote = true
+
+[init]
+	defaultBranch = main
