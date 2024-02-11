@@ -195,6 +195,7 @@ local plugins = {
 		end,
 	},
 
+	-- lualine status line
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -204,6 +205,7 @@ local plugins = {
 		end,
 	},
 
+	-- Filebrowser and tree editor in a buffer
 	{
 		"stevearc/oil.nvim",
 		opts = {},
@@ -216,6 +218,7 @@ local plugins = {
 		end,
 	},
 
+	-- Surround text with quotes, brackets, etc
 	{
 		"kylechui/nvim-surround",
 		config = function()
@@ -223,6 +226,7 @@ local plugins = {
 		end,
 	},
 
+	-- zk-like wiki
 	{
 		"vimwiki/vimwiki",
 		init = function()
@@ -234,6 +238,17 @@ local plugins = {
 				},
 			}
 		end,
+	},
+
+	-- Term persistence
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {},
+		cmd = "ToggleTerm",
+		keys = {
+			{ "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
+		},
 	},
 }
 
