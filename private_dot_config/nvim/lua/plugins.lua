@@ -254,11 +254,49 @@ local plugins = {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		opts = {},
-		cmd = "ToggleTerm",
+		lazy = false,
 		keys = {
 			{ "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
 		},
+		config = function()
+			require("toggleterm").setup()
+
+			local Terminal = require("toggleterm.terminal").Terminal
+			local lazygit = Terminal:new({
+				cmd = "lazygit",
+				dir = "git_dir",
+				direction = "float",
+				float_opts = {
+					border = "double",
+				},
+				-- function to run on opening the terminal
+				on_open = function(term)
+					vim.cmd("startinsert!")
+					vim.api.nvim_buf_set_keymap(
+						term.bufnr,
+						"n",
+						"q",
+						"<cmd>lua _lazygit_toggle()<CR>",
+						{ noremap = true, silent = true }
+					)
+				end,
+				-- function to run on closing the terminal
+				on_close = function(term)
+					vim.cmd("startinsert!")
+				end,
+			})
+
+			function _lazygit_toggle()
+				lazygit:toggle()
+			end
+
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>gg",
+				"<cmd>lua _lazygit_toggle()<CR>",
+				{ noremap = true, silent = true }
+			)
+		end,
 	},
 
 	{
@@ -278,6 +316,16 @@ local plugins = {
 				desc = "Smart open",
 			},
 		},
+	},
+
+	{
+		"ryanmsnyder/toggleterm-manager.nvim",
+		dependencies = {
+			"akinsho/nvim-toggleterm.lua",
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim", -- only needed because it's a dependency of telescope
+		},
+		config = true,
 	},
 }
 
