@@ -22,6 +22,7 @@ require("neo-tree").setup({
 		"document_symbols",
 	},
 	filesystem = {
+		netrw_hijack_behavior = "disabled",
 		filtered_items = {
 			visible = true,
 			hide_dotfiles = false,
