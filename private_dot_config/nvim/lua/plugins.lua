@@ -1,3 +1,5 @@
+-- opts = {} is equivalent to require(thing).setup() !
+
 local plugins = {
 	{ lazy = true, "nvim-lua/plenary.nvim" },
 
@@ -25,9 +27,9 @@ local plugins = {
 		lazy = false,
 		-- sqlite is only needed if you want to use frecency sorting
 		-- dependencies = { 'kkharji/sqlite.lua' }
-		config = function()
-			require("legendary").setup({ extensions = { lazy_nvim = { auto_register = true } } })
-		end,
+		opts = {
+			extensions = { lazy_nvim = { auto_register = true } },
+		},
 	},
 
 	{
@@ -47,9 +49,6 @@ local plugins = {
 
 	{
 		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end,
 	},
 
 	-- Useful plugin to show you pending keybinds.
@@ -73,16 +72,14 @@ local plugins = {
 				end,
 			},
 		},
-		config = function()
-			require("telescope").setup({
-				extensions = {
-					smart_open = {
-						match_algorithm = "fzy",
-						open_buffer_indicators = { previous = "👀", others = "🙈" },
-					},
+		opts = {
+			extensions = {
+				smart_open = {
+					match_algorithm = "fzy",
+					open_buffer_indicators = { previous = "👀", others = "🙈" },
 				},
-			})
-		end,
+			},
+		},
 	},
 
 	{
@@ -99,9 +96,7 @@ local plugins = {
 		"sustech-data/wildfire.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("wildfire").setup()
-		end,
+		opts = {},
 	},
 
 	-- Jump around
@@ -183,9 +178,7 @@ local plugins = {
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 		},
-		config = function()
-			require("codeium").setup({})
-		end,
+		opts = {},
 	},
 
 	-- neo-tree file tree
@@ -218,22 +211,17 @@ local plugins = {
 	-- Filebrowser and tree editor in a buffer
 	{
 		"stevearc/oil.nvim",
-		opts = {},
+		opts = {
+			default_file_explorer = true,
+		},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("oil").setup({
-				default_file_explorer = true,
-			})
-		end,
 	},
 
 	-- Surround text with quotes, brackets, etc
 	{
 		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
+		opts = {},
 	},
 
 	-- zk-like wiki

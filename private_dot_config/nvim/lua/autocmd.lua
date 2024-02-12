@@ -7,7 +7,6 @@ function _G.set_terminal_keymaps()
 	-- buffer = 0 means that this mapping is global
 	local opts = { noremap = true, silent = true }
 	vim.api.nvim_set_keymap("t", "<esc>", "<C-\\><C-n>", opts)
-	vim.api.nvim_set_keymap("t", "jk", "<C-\\><C-n>", opts)
 	vim.api.nvim_set_keymap("t", "<C-h>", "<Cmd>wincmd h<CR>", opts)
 	vim.api.nvim_set_keymap("t", "<C-j>", "<Cmd>wincmd j<CR>", opts)
 	vim.api.nvim_set_keymap("t", "<C-k>", "<Cmd>wincmd k<CR>", opts)
