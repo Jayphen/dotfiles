@@ -3,7 +3,7 @@ local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { "clangd", "rust_analyzer", "vtsls" }
+local servers = { "clangd", "rust_analyzer", "vtsls", "lua_ls" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		-- on_attach = my_custom_on_attach,
@@ -11,6 +11,7 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+local legendary = require("legendary")
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -23,27 +24,47 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
 
-		vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+		legendary.keymaps({
+			-- Diagnostic mappings with common options
+			{ "<space>e", vim.diagnostic.open_float, description = "Open diagnostic float", opts = opts },
+			{ "[d", vim.diagnostic.goto_prev, description = "Go to previous diagnostic", opts = opts },
+			{ "]d", vim.diagnostic.goto_next, description = "Go to next diagnostic", opts = opts },
+			{ "<space>d", vim.diagnostic.setloclist, description = "Open diagnostic loclist", opts = opts },
 
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-		vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-		vim.keymap.set("n", "<space>wl", function()
-			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<space>f", function()
-			vim.lsp.buf.format({ async = true })
-		end, opts)
+			-- LSP related mappings with common options
+			{ "gD", vim.lsp.buf.declaration, description = "Go to declaration", opts = opts },
+			{ "gd", vim.lsp.buf.definition, description = "Go to definition", opts = opts },
+			{ "K", vim.lsp.buf.hover, description = "Show hover information", opts = opts },
+			{ "gi", vim.lsp.buf.implementation, description = "Go to implementation", opts = opts },
+			{ "<C-k>", vim.lsp.buf.signature_help, description = "Show signature help", opts = opts },
+			{ "<space>wa", vim.lsp.buf.add_workspace_folder, description = "Add workspace folder", opts = opts },
+			{ "<space>wr", vim.lsp.buf.remove_workspace_folder, description = "Remove workspace folder", opts = opts },
+			{
+				"<space>wl",
+				function()
+					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+				end,
+				description = "List workspace folders",
+				opts = opts,
+			},
+			{ "<space>D", vim.lsp.buf.type_definition, description = "Go to type definition", opts = opts },
+			{ "<space>rn", vim.lsp.buf.rename, description = "Rename symbol", opts = opts },
+			{
+				"<space>ca",
+				vim.lsp.buf.code_action,
+				description = "Code action",
+				mode = { "n", "v" }, -- Valid for normal and visual mode
+				opts = opts,
+			},
+			{ "gr", vim.lsp.buf.references, description = "Find references", opts = opts },
+			{
+				"<space>f",
+				function()
+					vim.lsp.buf.format({ async = true })
+				end,
+				description = "Format document",
+				opts = opts,
+			},
+		})
 	end,
 })

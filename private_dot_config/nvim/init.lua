@@ -40,9 +40,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("mappings")
-require("autocmd")
 require("plugins")
+require("autocmd")
+require("mappings")
 require("lsp")
 
 -- [[ Highlight on yank ]]
