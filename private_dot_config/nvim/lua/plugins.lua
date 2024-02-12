@@ -113,6 +113,7 @@ local plugins = {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
+			{ "Exafunction/codeium.nvim", opts = {} },
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
@@ -170,15 +171,6 @@ local plugins = {
 			"typescriptreact",
 		},
 		dependencies = { "nvim-lspconfig" },
-	},
-
-	-- codeium ai completion
-	{
-		"Exafunction/codeium.nvim",
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-		opts = {},
 	},
 
 	-- neo-tree file tree
