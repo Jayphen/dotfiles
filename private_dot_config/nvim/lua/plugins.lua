@@ -164,13 +164,10 @@ local plugins = {
 	-- tsserver replacement
 	{
 		"yioneko/nvim-vtsls",
-		ft = {
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-		},
 		dependencies = { "nvim-lspconfig" },
+		config = function()
+			require("plugin-conf.vtsls")
+		end,
 	},
 
 	-- neo-tree file tree
@@ -224,7 +221,7 @@ local plugins = {
 				{
 					path = "~/docs/vimwiki",
 					syntax = "markdown",
-					ext = ".wiki",
+					ext = ".md",
 				},
 			}
 		end,
