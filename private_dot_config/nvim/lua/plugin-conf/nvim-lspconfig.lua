@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		legendary.keymaps({
 			-- Diagnostic mappings with common options
-			{ "<space>e", vim.diagnostic.open_float, description = "Open diagnostic float", opts = opts },
+			{ "<space>K", vim.diagnostic.open_float, description = "Open diagnostic float", opts = opts },
 			{ "[d", vim.diagnostic.goto_prev, description = "Go to previous diagnostic", opts = opts },
 			{ "]d", vim.diagnostic.goto_next, description = "Go to next diagnostic", opts = opts },
 			{ "<space>d", vim.diagnostic.setloclist, description = "Open diagnostic loclist", opts = opts },
@@ -36,7 +36,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "gd", vim.lsp.buf.definition, description = "Go to definition", opts = opts },
 			{ "K", vim.lsp.buf.hover, description = "Show hover information", opts = opts },
 			{ "gi", vim.lsp.buf.implementation, description = "Go to implementation", opts = opts },
-			{ "<C-k>", vim.lsp.buf.signature_help, description = "Show signature help", opts = opts },
 			{ "<space>wa", vim.lsp.buf.add_workspace_folder, description = "Add workspace folder", opts = opts },
 			{ "<space>wr", vim.lsp.buf.remove_workspace_folder, description = "Remove workspace folder", opts = opts },
 			{

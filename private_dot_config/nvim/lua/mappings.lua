@@ -56,9 +56,6 @@ legendary.setup({
 		-- Go to next diagnostic message
 		{ "]d", vim.diagnostic.goto_next, description = "Go to next diagnostic message", mode = "n" },
 
-		-- Open floating diagnostic message
-		{ "<leader>e", vim.diagnostic.open_float, description = "Open floating diagnostic message", mode = "n" },
-
 		-- Open diagnostics list
 		-- { '<leader>q', vim.diagnostic.setloclist, description = 'Open diagnostics list', mode = 'n' },
 	},
