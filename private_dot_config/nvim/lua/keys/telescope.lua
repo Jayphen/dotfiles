@@ -4,4 +4,5 @@ return {
 	{ "<leader>fs", ":Telescope live_grep<Cr>", mode = { "n" }, desc = "Live grep" },
 	{ "<leader>fb", ":Telescope buffers<Cr>", mode = { "n" }, desc = "Buffers" },
 	{ "<leader>fg", ":Telescope git_status<Cr>", mode = { "n" }, desc = "Git status" },
+	{ "<leader>fw", ":Telescope grep_string<Cr>", mode = { "n" }, desc = "Grep string under cursor" },
 }

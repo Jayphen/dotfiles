@@ -58,5 +58,8 @@ legendary.setup({
 
 		-- Open diagnostics list
 		-- { '<leader>q', vim.diagnostic.setloclist, description = 'Open diagnostics list', mode = 'n' },
+
+		{ "<leader>y", '"+y', description = "Copy to sys clipboard", mode = "n" },
+		{ "<leader>y", '"+y', description = "Copy to sys clipboard", mode = "v" },
 	},
 })
