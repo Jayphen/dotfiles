@@ -13,7 +13,11 @@ local plugins = {
 		end,
 	},
 
-	-- make sexy ui
+	{
+		"projekt0n/github-nvim-theme",
+	},
+
+	-- make pretty ui
 	{
 		"stevearc/dressing.nvim",
 		opts = {},
@@ -46,6 +50,7 @@ local plugins = {
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
 	"kyazdani42/nvim-web-devicons",
+	"sindrets/diffview.nvim",
 
 	{
 		"lewis6991/gitsigns.nvim",
@@ -180,6 +185,7 @@ local plugins = {
 				typescript = { { "prettierd", "prettier" } },
 				typescriptreact = { { "prettierd", "prettier" } },
 				javascriptreact = { { "prettierd", "prettier" } },
+				css = { { "prettierd", "prettier" } },
 			},
 			-- Set up format-on-save
 			format_on_save = { timeout_ms = 500, lsp_fallback = true },
