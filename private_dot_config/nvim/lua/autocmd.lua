@@ -3,6 +3,13 @@ local augroup = vim.api.nvim_create_augroup
 
 autocmd({ "BufWritePost" }, { pattern = { "/Users/jayphen/.config/nvim/init.lua" }, command = "so <afile>" })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.templ",
+	callback = function()
+		vim.cmd("TSBufEnable highlight")
+	end,
+})
+
 function _G.set_terminal_keymaps()
 	-- buffer = 0 means that this mapping is global
 	local opts = { noremap = true, silent = true }

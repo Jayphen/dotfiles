@@ -40,6 +40,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.filetype.add({ extension = { templ = "templ" } })
+
 require("plugins")
 require("autocmd")
 require("mappings")
