@@ -97,6 +97,17 @@ local plugins = {
 	"tpope/vim-rhubarb",
 	"kyazdani42/nvim-web-devicons",
 	"sindrets/diffview.nvim",
+	{
+		"almo7aya/openingh.nvim",
+		keys = {
+			{
+				"<leader>gy",
+				":OpenInGHFileLines<CR>",
+				mode = "",
+				desc = "Open line in Github",
+			},
+		},
+	},
 
 	{
 		"lewis6991/gitsigns.nvim",
@@ -320,18 +331,18 @@ local plugins = {
 	},
 
 	-- zk-like wiki
-	{
-		"vimwiki/vimwiki",
-		init = function()
-			vim.g.vimwiki_list = {
-				{
-					path = "~/docs/vimwiki",
-					syntax = "markdown",
-					ext = ".md",
-				},
-			}
-		end,
-	},
+	-- {
+	-- 	"vimwiki/vimwiki",
+	-- 	init = function()
+	-- 		vim.g.vimwiki_list = {
+	-- 			{
+	-- 				path = "~/docs/vimwiki",
+	-- 				syntax = "markdown",
+	-- 				ext = ".md",
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- },
 
 	-- Term persistence
 	{
