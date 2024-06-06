@@ -9,6 +9,7 @@
 	process = git-lfs filter-process
 
 [user]
+  name = Jayphen
 	email = software@jayphen.com
 
 [diff]
