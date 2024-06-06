@@ -59,6 +59,11 @@ local plugins = {
 		},
 	},
 
+	"rcarriga/nvim-notify",
+	opts = {
+		top_down = false,
+	},
+
 	{
 		"projekt0n/github-nvim-theme",
 	},
@@ -76,7 +81,7 @@ local plugins = {
 		priority = 10000,
 		lazy = false,
 		-- sqlite is only needed if you want to use frecency sorting
-		-- dependencies = { 'kkharji/sqlite.lua' }
+		dependencies = { "kkharji/sqlite.lua" },
 		opts = {
 			extensions = { lazy_nvim = { auto_register = true } },
 		},
@@ -345,6 +350,16 @@ local plugins = {
 	-- },
 
 	-- Term persistence
+
+	{
+		"ryanmsnyder/toggleterm-manager.nvim",
+		dependencies = {
+			"akinsho/nvim-toggleterm.lua",
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim", -- only needed because it's a dependency of telescope
+		},
+		config = true,
+	},
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
