@@ -2,14 +2,20 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+set -gx VOLTA_HOME "$HOME/.volta"
 set -gx GOPATH $HOME/golang
 set -gx GOROOT /opt/homebrew/opt/go/libexec
+set -gx OPENAI_API_KEY {{  onepasswordRead "op://Private/OpenAI/credential" }}
 
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
+fish_add_path $VOLTA_HOME/bin
 fish_add_path $GOPATH/bin
 fish_add_path $GOROOT/bin
-fish_add_path /opt/homebrew/bin
+fish_add_path "/opt/homebrew/bin"
+fish_add_path "/Applications/TRex.app/Contents/MacOS/cli"
+
+fzf --fish | source
 
 # Aliases
 alias cat bat
@@ -17,4 +23,11 @@ alias grep rg
 alias mkdir 'mkdir -p'
 alias cz chezmoi
 
+function ocrImage 
+  cat $argv[1] | trex -i | shortcuts run "GPT-4: Readability"
+end
+
+
 zoxide init fish | source
+
+
