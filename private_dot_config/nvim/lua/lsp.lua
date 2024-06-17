@@ -6,6 +6,7 @@ require("conform").setup({
 		-- Use a sub-list to run only the first available formatter
 		javascript = { { "prettierd", "prettier" } },
 		typescript = { { "prettierd", "prettier" } },
+		astro = { { "prettierd", "prettier" } },
 		go = { "gofumpt", "goimports" },
 	},
 	format_on_save = {
