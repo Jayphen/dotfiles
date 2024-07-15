@@ -59,11 +59,6 @@ local plugins = {
 		},
 	},
 
-	"rcarriga/nvim-notify",
-	opts = {
-		top_down = false,
-	},
-
 	{
 		"projekt0n/github-nvim-theme",
 	},
@@ -81,7 +76,7 @@ local plugins = {
 		priority = 10000,
 		lazy = false,
 		-- sqlite is only needed if you want to use frecency sorting
-		dependencies = { "kkharji/sqlite.lua" },
+		-- dependencies = { 'kkharji/sqlite.lua' }
 		opts = {
 			extensions = { lazy_nvim = { auto_register = true } },
 		},
@@ -155,6 +150,7 @@ local plugins = {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"virchau13/tree-sitter-astro",
+			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		build = ":TSUpdate",
 	},
@@ -189,6 +185,10 @@ local plugins = {
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			{ "Exafunction/codeium.nvim", opts = {} },
+			{
+				"supermaven-inc/supermaven-nvim",
+				opts = {},
+			},
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
