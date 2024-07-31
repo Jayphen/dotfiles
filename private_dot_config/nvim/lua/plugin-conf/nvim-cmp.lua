@@ -44,6 +44,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", priority = 1000, max_item_count = 10 },
 		{ name = "codeium", priority = 800 },
+		{ name = "supermaven", priority = 500 },
 		{ name = "luasnip", priority = 750, max_item_count = 10 },
 		{ name = "nvim_lsp_signature_help" },
 	}, common_sources),

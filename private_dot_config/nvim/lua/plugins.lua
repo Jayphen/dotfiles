@@ -150,7 +150,6 @@ local plugins = {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"virchau13/tree-sitter-astro",
-			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		build = ":TSUpdate",
 	},
@@ -187,7 +186,10 @@ local plugins = {
 			{ "Exafunction/codeium.nvim", opts = {} },
 			{
 				"supermaven-inc/supermaven-nvim",
-				opts = {},
+				opts = {
+					disable_inline_completion = true,
+					disable_keymaps = true,
+				},
 			},
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-buffer",
@@ -256,6 +258,7 @@ local plugins = {
 				typescriptreact = { { "prettierd", "prettier" } },
 				javascriptreact = { { "prettierd", "prettier" } },
 				css = { { "prettierd", "prettier" } },
+				astro = { "prettier" },
 			},
 			-- Set up format-on-save
 			format_on_save = { timeout_ms = 500, lsp_fallback = true },

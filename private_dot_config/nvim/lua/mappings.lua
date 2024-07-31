@@ -61,6 +61,6 @@ legendary.setup({
 
 		{ "<leader>y", '"+y', description = "Copy to sys clipboard", mode = "n" },
 		{ "<leader>y", '"+y', description = "Copy to sys clipboard", mode = "v" },
-		{ "<leader>ya", ":+y+<cr>", description = "Copy doc to sys clipboard", mode = "n" },
+		{ "<leader>ya", 'gg"+yG', description = "Copy doc to sys clipboard", mode = "n" },
 	},
 })
