@@ -61,4 +61,3 @@ require("lsp")
 
 vim.opt.foldmethod = "expr" -- treesiter time
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesiter
-vim.g.skip_ts_context_commentstring_module = true
