@@ -2,6 +2,25 @@
 
 local plugins = {
 	{ lazy = true, "nvim-lua/plenary.nvim" },
+	{
+		-- https://github.com/crusj/bookmarks.nvim
+		"crusj/bookmarks.nvim",
+		keys = {
+			{ "<tab><tab>", mode = { "n" } },
+		},
+		branch = "main",
+		dependencies = { "nvim-web-devicons" },
+		config = function()
+			require("bookmarks").setup({
+				keymap = {
+					toggle = "<tab><tab>", -- Toggle bookmarks(global keymap)
+					add = "<leader>ba", -- Add bookmarks(global keymap)
+					show_desc = "<leader>bd", -- show bookmark desc(global keymap)
+				},
+			})
+			require("telescope").load_extension("bookmarks")
+		end,
+	},
 
 	{
 		"smjonas/inc-rename.nvim",
@@ -31,6 +50,14 @@ local plugins = {
 		end,
 	},
 
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			require("notify").setup({
+				-- Add any configuration options here
+			})
+		end,
+	},
 	-- nicer popups and ting
 	{
 		"folke/noice.nvim",
@@ -109,10 +136,6 @@ local plugins = {
 		},
 	},
 
-	{
-		"lewis6991/gitsigns.nvim",
-	},
-
 	-- Useful plugin to show you pending keybinds.
 	{ "folke/which-key.nvim", opts = {} },
 
@@ -148,10 +171,42 @@ local plugins = {
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
-			-- "nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 			"virchau13/tree-sitter-astro",
+			"windwp/nvim-ts-autotag",
+			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		build = ":TSUpdate",
+		config = function()
+			require("ts_context_commentstring").setup({})
+			vim.g.skip_ts_context_commentstring_module = true
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"typescript",
+					"javascript",
+					"tsx",
+					"html",
+					"css",
+					"json",
+					"astro",
+					"lua",
+					"regex",
+					"bash",
+					-- Add any other languages you frequently use
+				},
+				fold = {
+					enable = true,
+				},
+				sync_install = false,
+				auto_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+				indent = { enable = true },
+				autotag = { enable = true },
+			})
+		end,
 	},
 
 	-- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
@@ -253,12 +308,15 @@ local plugins = {
 			-- Define your formatters
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "prettierd", "prettier" } },
-				typescript = { { "prettierd", "prettier" } },
-				typescriptreact = { { "prettierd", "prettier" } },
-				javascriptreact = { { "prettierd", "prettier" } },
-				css = { { "prettierd", "prettier" } },
+				javascript = { "biome", "prettierd", "prettier" },
+				typescript = { "biome", "prettierd", "prettier" },
+				typescriptreact = { "biome", "prettierd", "prettier" },
+				javascriptreact = { "biome", "prettierd", "prettier" },
+				json = { "biome", "prettierd", "prettier" },
+				jsonc = { "biome", "prettierd", "prettier" },
+				css = { "prettierd", "prettier" },
 				astro = { "prettier" },
+				-- Add more file types as needed
 			},
 			-- Set up format-on-save
 			format_on_save = { timeout_ms = 500, lsp_fallback = true },
@@ -267,7 +325,20 @@ local plugins = {
 				shfmt = {
 					prepend_args = { "-i", "2" },
 				},
+				prettier = {
+					-- Prettier-specific configuration
+					prepend_args = { "--config-precedence", "prefer-file" },
+				},
 			},
+		},
+
+		stop_after_first = {
+			javascript = true,
+			typescript = true,
+			typescriptreact = true,
+			javascriptreact = true,
+			json = true,
+			jsonc = true,
 		},
 		init = function()
 			-- If you want the formatexpr, here is the place to set it
@@ -430,6 +501,9 @@ local plugins = {
 		},
 		config = true,
 	},
+
+	require("plugin-conf.ufo"),
+	require("plugin-conf.statuscol"),
 }
 
 require("lazy").setup(plugins, require("plugin-conf.lazy"))
