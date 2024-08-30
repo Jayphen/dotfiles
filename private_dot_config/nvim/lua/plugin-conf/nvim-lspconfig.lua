@@ -3,7 +3,17 @@ local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { "clangd", "rust_analyzer", "vtsls", "lua_ls", "gopls", "templ", "astro", "mdx_analyzer" }
+local servers = {
+	"clangd",
+	"rust_analyzer",
+	"tsserver",
+	-- "vtsls",
+	"lua_ls",
+	"gopls",
+	"templ",
+	"astro",
+	"mdx_analyzer",
+}
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -19,6 +29,38 @@ lspconfig.htmx.setup({
 	capabilities = capabilities,
 	filetypes = { "html", "templ" },
 })
+lspconfig.tailwindcss.setup({
+	filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_dir = lspconfig.util.root_pattern(
+		"tailwind.config.js",
+		"tailwind.config.ts",
+		"postcss.config.js",
+		"postcss.config.ts",
+		"package.json",
+		"node_modules",
+		".git"
+	),
+})
+
+lspconfig.biome.setup({
+	on_attach = function(_client, bufnr)
+		-- Enable formatting on save
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			callback = function()
+				-- organize_imports()
+				vim.lsp.buf.code_action({
+					context = {
+						only = { "source.organizeImports.biome" },
+					},
+					apply = true,
+				})
+				vim.lsp.buf.format({ async = false })
+			end,
+		})
+	end,
+})
+lspconfig.tsserver.setup({})
 
 local legendary = require("legendary")
 -- Use LspAttach autocommand to only map the following keys
