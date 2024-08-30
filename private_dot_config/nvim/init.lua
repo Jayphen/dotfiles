@@ -24,6 +24,9 @@ vim.o.number = true
 vim.o.termguicolors = true
 vim.o.title = false
 
+vim.opt.foldmethod = "expr" -- treesiter time
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesiter
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -58,6 +61,3 @@ require("lsp")
 -- 	pattern = "*",
 -- })
 --
-
-vim.opt.foldmethod = "expr" -- treesiter time
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesiter
