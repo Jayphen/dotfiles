@@ -157,6 +157,20 @@ local plugins = {
 				end,
 			},
 		},
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<C-d>"] = require("telescope.actions").delete_buffer, -- Delete buffer in insert mode
+						},
+						n = {
+							["<C-d>"] = require("telescope.actions").delete_buffer, -- Delete buffer in normal mode
+						},
+					},
+				},
+			})
+		end,
 		opts = {
 			extensions = {
 				smart_open = {
