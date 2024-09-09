@@ -6,7 +6,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local servers = {
 	"clangd",
 	"rust_analyzer",
-	"tsserver",
+	"ts_ls",
 	-- "vtsls",
 	"lua_ls",
 	"gopls",
@@ -41,6 +41,15 @@ lspconfig.tailwindcss.setup({
 		".git"
 	),
 })
+lspconfig.lua_ls.setup({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
 
 lspconfig.biome.setup({
 	on_attach = function(_client, bufnr)
@@ -60,7 +69,7 @@ lspconfig.biome.setup({
 		})
 	end,
 })
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 
 local legendary = require("legendary")
 -- Use LspAttach autocommand to only map the following keys
