@@ -27,7 +27,7 @@ legendary.setup({
 
 		{
 			"<leader>x",
-			"<Cmd>bdelete<CR>",
+			"<Cmd>Bdelete<CR>",
 			description = "Close current buffer",
 			mode = "n", -- Normal mode
 		},

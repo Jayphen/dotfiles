@@ -5,9 +5,6 @@ local plugins = {
 	{
 		-- https://github.com/crusj/bookmarks.nvim
 		"crusj/bookmarks.nvim",
-		keys = {
-			{ "<tab><tab>", mode = { "n" } },
-		},
 		branch = "main",
 		dependencies = { "nvim-web-devicons" },
 		config = function()
@@ -516,8 +513,10 @@ local plugins = {
 		config = true,
 	},
 
+	"famiu/bufdelete.nvim",
 	require("plugin-conf.ufo"),
 	require("plugin-conf.statuscol"),
+	require("plugin-conf.project"),
 }
 
 require("lazy").setup(plugins, require("plugin-conf.lazy"))

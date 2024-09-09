@@ -5,4 +5,5 @@ return {
 	{ "<leader>fb", ":Telescope buffers<Cr>", mode = { "n" }, desc = "Buffers" },
 	{ "<leader>fg", ":Telescope git_status<Cr>", mode = { "n" }, desc = "Git status" },
 	{ "<leader>fw", ":Telescope grep_string<Cr>", mode = { "n" }, desc = "Grep string under cursor" },
+	{ "<leader>fo", ":Telescope neovim-project discover<Cr>", mode = { "n" }, desc = "Project discover" },
 }
