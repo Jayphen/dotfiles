@@ -24,9 +24,6 @@ vim.o.number = true
 vim.o.termguicolors = true
 vim.o.title = false
 
-vim.opt.foldmethod = "expr" -- treesiter time
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesiter
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -52,12 +49,11 @@ require("lsp")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
--- local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
--- vim.api.nvim_create_autocmd("TextYankPost", {
--- 	callback = function()
--- 		vim.highlight.on_yank()
--- 	end,
--- 	group = highlight_group,
--- 	pattern = "*",
--- })
---
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
+})

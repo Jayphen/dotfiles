@@ -1,22 +1,13 @@
 local lspconfig = require("lspconfig")
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = {
-	"clangd",
-	"rust_analyzer",
-	"ts_ls",
-	-- "vtsls",
-	"lua_ls",
-	"gopls",
-	"templ",
-	"astro",
-	"mdx_analyzer",
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
 }
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = on_attach,
+local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+	require("lspconfig")[ls].setup({
 		capabilities = capabilities,
 	})
 end
@@ -42,6 +33,7 @@ lspconfig.tailwindcss.setup({
 	),
 })
 lspconfig.lua_ls.setup({
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -52,6 +44,7 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.biome.setup({
+	capabilities = capabilities,
 	on_attach = function(_client, bufnr)
 		-- Enable formatting on save
 		vim.api.nvim_create_autocmd("BufWritePre", {

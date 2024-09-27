@@ -10,7 +10,7 @@ local plugins = {
 		config = function()
 			require("bookmarks").setup({
 				keymap = {
-					toggle = "<tab><tab>", -- Toggle bookmarks(global keymap)
+					toggle = "<leader><tab>", -- Toggle bookmarks(global keymap)
 					add = "<leader>ba", -- Add bookmarks(global keymap)
 					show_desc = "<leader>bd", -- show bookmark desc(global keymap)
 				},
@@ -516,7 +516,6 @@ local plugins = {
 	"famiu/bufdelete.nvim",
 	require("plugin-conf.ufo"),
 	require("plugin-conf.statuscol"),
-	require("plugin-conf.project"),
 }
 
 require("lazy").setup(plugins, require("plugin-conf.lazy"))
