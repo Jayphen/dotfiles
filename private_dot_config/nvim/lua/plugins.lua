@@ -52,6 +52,7 @@ local plugins = {
 		config = function()
 			require("notify").setup({
 				-- Add any configuration options here
+				top_down = false,
 			})
 		end,
 	},
@@ -250,13 +251,16 @@ local plugins = {
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			{ "Exafunction/codeium.nvim", opts = {} },
-			{
-				"supermaven-inc/supermaven-nvim",
-				opts = {
-					disable_inline_completion = true,
-					disable_keymaps = true,
-				},
-			},
+			"onsails/lspkind-nvim",
+			--    {
+			--    "supermaven-inc/supermaven-nvim",
+			--    config = function()
+			--      require("supermaven-nvim").setup({
+			-- 		disable_inline_completion = true,
+			-- 		disable_keymaps = true,
+			--        })
+			--    end,
+			-- },
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
