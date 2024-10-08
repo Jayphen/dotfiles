@@ -49,6 +49,7 @@ legendary.setup({
 		{ "]b", "<Cmd>bnext<CR>", description = "Go to next buffer", mode = "n" },
 		-- Go to previous buffer
 		{ "[b", "<Cmd>bprevious<CR>", description = "Go to previous buffer", mode = "n" },
+		{ "<leader>bb", "<Cmd>Neotree buffers float toggle<CR>", description = "Toggle buffer tree", mode = "n" },
 
 		-- Go to previous diagnostic message
 		{ "[d", vim.diagnostic.goto_prev, description = "Go to previous diagnostic message", mode = "n" },
