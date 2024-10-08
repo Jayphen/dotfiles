@@ -1,4 +1,6 @@
 local luasnip = require("luasnip")
+local lspkind = require("lspkind") -- Optional: for standard icons if you want to include LSP kinds
+
 local common_sources = {
 	{ name = "buffer", max_item_count = 10 },
 	{ name = "calc" },
@@ -45,11 +47,19 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	}),
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol_text",
+			max_width = 50,
+			symbol_map = { Copilot = "", Codeium = " " },
+		}),
+	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", priority = 1000, max_item_count = 10 },
-		{ name = "codeium", priority = 800 },
-		{ name = "supermaven", priority = 500 },
 		{ name = "luasnip", priority = 750, max_item_count = 10 },
 		{ name = "nvim_lsp_signature_help" },
+		{ name = "copilot", group_index = 2 },
+		{ name = "codeium", group_index = 2, priority = 800 },
+		-- { name = "supermaven", group_index = 2, priority = 500 },
 	}, common_sources),
 })
