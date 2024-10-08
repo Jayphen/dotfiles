@@ -20,8 +20,20 @@ lspconfig.htmx.setup({
 	capabilities = capabilities,
 	filetypes = { "html", "templ" },
 })
+lspconfig.astro.setup({})
 lspconfig.tailwindcss.setup({
-	filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	settings = {
+		tailwindCSS = {
+			experimental = {
+				classRegex = {
+					{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+					{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+				},
+			},
+		},
+	},
+
+	filetypes = { "html", "css", "astro", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	root_dir = lspconfig.util.root_pattern(
 		"tailwind.config.js",
 		"tailwind.config.ts",
