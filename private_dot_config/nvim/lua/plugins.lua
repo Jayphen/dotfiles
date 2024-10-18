@@ -538,6 +538,14 @@ local plugins = {
 	"famiu/bufdelete.nvim",
 	require("plugin-conf.ufo"),
 	require("plugin-conf.statuscol"),
+
+	-- Pretty menu
+	{ "nvchad/volt", lazy = true },
+	{
+		"nvchad/menu",
+		lazy = true,
+		keys = { { "<leader>mm", "<cmd>lua require('menu').open('default')<cr>", desc = "Menu" } },
+	},
 }
 
 require("lazy").setup(plugins, require("plugin-conf.lazy"))
